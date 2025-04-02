@@ -1,0 +1,20 @@
+name: GitHub to Slack
+on: [push, pull_request, issues]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: "https://hooks.slack.com/services/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"
+          SLACK_MESSAGE: |
+            🔔 *GitHub Event Notification*
+            - 🏷 Repository: *${{ github.repository }}*
+            - 👤 Actor: *${{ github.actor }}*
+            - 🔀 Branch: *${{ github.ref }}*
+            - 📝 Commit Message: *${{ github.event.head_commit.message || 'N/A' }}*
+            - 🔗 Commit SHA: *${{ github.sha }}*
+            - 🏷 Event Type: *${{ github.event_name }}*
+            ${{ github.event.pull_request.title != '' && format('- 📌 PR Title: *{0}*', github.event.pull_request.title) || '' }}
