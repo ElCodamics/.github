@@ -8,7 +8,7 @@ jobs:
       - name: Send Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_WEBHOOK: "${{ secrets.SLACK_WEBHOOK_URL }}"
+          SLACK_WEBHOOK: "https://hooks.slack.com/services/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"
           SLACK_MESSAGE: |
             🔔 *GitHub Event Notification*
             - 🏷 Repository: *${{ github.repository }}*
